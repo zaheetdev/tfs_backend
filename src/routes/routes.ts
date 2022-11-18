@@ -8,7 +8,7 @@ const {getItemsbyPurchaseOrder,getItemsbyPurchaseOrderList,getPurchaseOrderNewIt
 // Store
 router.route('/iteminventory').get(getItemInventory);
 router.route('/iteminventory/:id').get(getItemInventoryById).post(updateItemInventoryById);
-router.route('/getStores/').get(allStore);
+router.route('/get-stores/').get(allStore);
 
 // Purchase Order
 router.route('/purchaseorder/list').get(getItemsbyPurchaseOrderList);

@@ -59,8 +59,12 @@ exports.login = async (req: Request, res: Response, next) => {
     const userRepo = AppDataSource.getRepository(User);
 
     try {
-        const user = await userRepo.findOneBy({ email: request.username });
-
+        const userxs = await userRepo.findOneBy({ email: request.username });
+        var user = await userRepo.findOne(
+            { where:
+                { email: request.email }
+            }
+        );
         if (!user)
             throw new Error("Email does not exist");
 
@@ -70,6 +74,7 @@ exports.login = async (req: Request, res: Response, next) => {
         const { token, refreshToken } = await JWT.generateToken(user);
 
         const authenticationResponse = new AuthenticationResponse();
+        console.log("------------")
         authenticationResponse.user = EntityToModel.userModel(user);
         authenticationResponse.token = token;
         authenticationResponse.refreshToken = refreshToken;
