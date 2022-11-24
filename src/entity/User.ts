@@ -1,3 +1,4 @@
+
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { RefreshToken } from "./RefreshToken"
 
@@ -27,6 +28,12 @@ export class User {
 
     @Column()
     idStore: number
+
+    @Column()
+    idProfile: number
+
+    @Column()
+    createdBy: number
 
     @OneToMany(type=>RefreshToken, refreshToken => refreshToken.user)
     refreshToken:RefreshToken
